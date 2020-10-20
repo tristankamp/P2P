@@ -10,18 +10,18 @@ using P2P.Model;
 
 namespace P2P.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/powernap/[controller]")]
     [ApiController]
 
     public class PeerController : ControllerBase
     {
         public static readonly Dictionary<string, Peer> peers = new Dictionary<string, Peer>()
         {
-            {"File 1", new Peer("127.0.0.1",2049)},
-            {"File 2", new Peer("127.0.0.2",2050)},
-            {"File 3", new Peer("127.0.0.3",2051)},
-            {"File 4", new Peer("127.0.0.4",2052)},
-            {"File 5", new Peer("127.0.0.5",2053)},
+            {"File1", new Peer("127.0.0.1",2049)},
+            {"File2", new Peer("127.0.0.2",2050)},
+            {"File3", new Peer("127.0.0.3",2051)},
+            {"File4", new Peer("127.0.0.4",2052)},
+            {"File5", new Peer("127.0.0.5",2053)},
         };
         
     
@@ -40,12 +40,12 @@ namespace P2P.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Get(string FileName)
         {
-            if (peers.ContainsKey(i => i.FileName == FileName))
+            if (peers.ContainsKey(FileName))
             {
-                return Ok(peers.Find(i => i.FileName == FileName));
+                return Ok(peers.ContainsKey(FileName));
             }
             else
-                return NotFound($"Peer {FileName} not found");
+                return NotFound($"{FileName} not found");
         }
 
         // POST api/<PeerController>
