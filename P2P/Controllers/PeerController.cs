@@ -24,7 +24,6 @@ namespace P2P.Controllers
             {"File5", new Peer("127.0.0.5",2053)},
         };
 
-        public int postresponse;
 
         // GET: api/<PeerController>
         [HttpGet]
@@ -65,16 +64,27 @@ namespace P2P.Controllers
             else return -1;
         }
 
-        // PUT api/<PeerController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // DELETE api/<PeerController>/5
+        [HttpDelete("{fileName}")]
+        public int Delete(string fileName)
         {
+            if (peers.ContainsKey(fileName) == true)
+            {
+                peers.Remove(fileName);
+                return 1;
+            }
+
+            if (peers.ContainsKey(fileName) != true)
+            {
+                return 0;
+            }
+            else return -1;
         }
 
-        // DELETE api/<PeerController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        // PUT api/<PeerController>/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] )
+        //{
+        //}
     }
 }
