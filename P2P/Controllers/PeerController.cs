@@ -42,7 +42,7 @@ namespace P2P.Controllers
         {
             if (peers.ContainsKey(FileName))
             {
-                return Ok(peers.ContainsKey(FileName));
+                return Ok(peers[FileName]);
             }
             else
                 return NotFound($"{FileName} not found");
@@ -50,8 +50,9 @@ namespace P2P.Controllers
 
         // POST api/<PeerController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post( string value, [FromBody] Peer PeerToAdd)
         {
+            peers.Add(value, PeerToAdd);
         }
 
         // PUT api/<PeerController>/5
