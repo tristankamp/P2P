@@ -17,11 +17,11 @@ namespace P2P.Controllers
     {
         public static readonly Dictionary<string, Peer> peers = new Dictionary<string, Peer>()
         {
-            {"File1", new Peer("127.0.0.1",2049)},
-            {"File2", new Peer("127.0.0.2",2050)},
-            {"File3", new Peer("127.0.0.3",2051)},
-            {"File4", new Peer("127.0.0.4",2052)},
-            {"File5", new Peer("127.0.0.5",2053)},
+            //{"File1", new Peer("127.0.0.1",2049)},
+            //{"File2", new Peer("127.0.0.2",2050)},
+            //{"File3", new Peer("127.0.0.3",2051)},
+            //{"File4", new Peer("127.0.0.4",2052)},
+            //{"File5", new Peer("127.0.0.5",2053)},
         };
         
     
@@ -49,10 +49,10 @@ namespace P2P.Controllers
         }
 
         // POST api/<PeerController>
-        [HttpPost]
-        public void Post( string value, [FromBody] Peer PeerToAdd)
+        [HttpPost("{key}")]
+        public void Post(string key, [FromBody] Peer PeerToAdd)
         {
-            peers.Add(value, PeerToAdd);
+            peers.Add(key, PeerToAdd);
         }
 
         // PUT api/<PeerController>/5
