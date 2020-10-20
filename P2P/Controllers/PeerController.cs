@@ -15,14 +15,16 @@ namespace P2P.Controllers
 
     public class PeerController : ControllerBase
     {
-        private static readonly List<Peer> peers = new List<Peer>()
+        public static readonly Dictionary<string, Peer> peers = new Dictionary<string, Peer>()
         {
-            new Peer("File1","127.0.0.1",2049),
-            new Peer("File2","130.0.0.1",2050),
-            new Peer("File3","145.0.0.1",2051),
-            new Peer("File4","131.0.0.1",2052),
-            new Peer("File5","199.0.0.1",3000)
+            {"File 1", new Peer("127.0.0.1",2049)},
+            {"File 2", new Peer("127.0.0.2",2050)},
+            {"File 3", new Peer("127.0.0.3",2051)},
+            {"File 4", new Peer("127.0.0.4",2052)},
+            {"File 5", new Peer("127.0.0.5",2053)},
         };
+        
+    
 
         // GET: api/<PeerController>
         [HttpGet]
@@ -38,7 +40,7 @@ namespace P2P.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Get(string FileName)
         {
-            if (peers.Exists(i => i.FileName == FileName))
+            if (peers.ContainsKey(i => i.FileName == FileName))
             {
                 return Ok(peers.Find(i => i.FileName == FileName));
             }

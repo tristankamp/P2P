@@ -7,7 +7,7 @@ namespace P2P.Model
 {
     public class Peer
     {
-        private string _fileName;
+
         private string _iPAddress;
         private int _portNumber;
 
@@ -16,21 +16,12 @@ namespace P2P.Model
 
         }
 
-        public Peer(string fileName, string iPAddress, int portNumber)
+        public Peer(string iPAddress, int portNumber)
         {
-            _fileName = fileName;
             _iPAddress = iPAddress;
             _portNumber = portNumber;
         }
 
-        public string FileName
-        {
-            get => _fileName;
-            set
-            {
-                _fileName = value;
-            }
-        }
 
         public string IPAddress
         {
@@ -53,7 +44,7 @@ namespace P2P.Model
         public override string ToString()
         {
             return
-                $"{nameof(FileName)}: {FileName}, {nameof(IPAddress)}: {IPAddress}, {nameof(PortNumber)}: {PortNumber}";
+                $"{nameof(IPAddress)}: {IPAddress}, {nameof(PortNumber)}: {PortNumber}";
         }
     }
 }
