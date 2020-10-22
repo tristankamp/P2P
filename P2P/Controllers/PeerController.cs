@@ -15,13 +15,13 @@ namespace P2P.Controllers
 
     public class PeerController : ControllerBase
     {
-        public static readonly Dictionary<string, Peer> peers = new Dictionary<string, Peer>()
+        public static readonly Dictionary<string, List<Peer>> peers = new Dictionary<string, List<Peer>>()
         {
-            {"File1", new Peer("127.0.0.1",2049)},
-            {"File2", new Peer("127.0.0.2",2050)},
-            {"File3", new Peer("127.0.0.3",2051)},
-            {"File4", new Peer("127.0.0.4",2052)},
-            {"File5", new Peer("127.0.0.5",2053)},
+            {"File1", new List<Peer>{new Peer("127.0.0.2",2050),new Peer("127.0.0.3",2051)}},
+            {"File2", new List<Peer>{new Peer("127.0.0.5",2053),new Peer("127.0.0.4",2052)}},
+            {"File3", new List<Peer>{new Peer("127.0.0.6",2054),new Peer("127.0.0.5",2053)}},
+            {"File4", new List<Peer>{new Peer("127.0.0.4",2052),new Peer("127.0.0.3",2051)}},
+            {"File5", new List<Peer>{new Peer("127.0.0.2",2050),new Peer("127.0.0.7",2055)}},
         };
 
 
@@ -51,15 +51,15 @@ namespace P2P.Controllers
         [HttpPost("{key}")]
         public int Post(string key, [FromBody] Peer PeerToAdd)
         {
-            if (peers.ContainsKey(key) != true)
+            if (peers.ContainsKey(key) == true)
             {
-                peers.Add(key, PeerToAdd);
+                peers[key].Add(PeerToAdd);
                 return 1;
             }
 
-            if (peers.ContainsKey(key) == true)
+            if (peers.ContainsKey(key) != true)
             {
-                return 0;
+                peers.Add(key,new List<apeer>);
             }
             else return -1;
         }
