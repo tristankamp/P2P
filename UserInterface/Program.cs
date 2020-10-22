@@ -11,7 +11,6 @@ namespace UserInterface
             pServer.Start();
 
             Console.ReadLine();
-
         }
     }
 }
